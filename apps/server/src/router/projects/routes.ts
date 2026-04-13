@@ -119,6 +119,100 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
       }),
     },
   )
+  .patch(
+    "/:id",
+    async ({ body, headers, jwt, params, set }) => {
+      const currentUserId = await getCurrentUserId(jwt, headers.authorization);
+
+      if (!currentUserId) {
+        set.status = 401;
+
+        return { error: "unauthorized" };
+      }
+
+      const [project] = await db
+        .select({
+          id: schema.projects.id,
+          ownerId: schema.projects.ownerId,
+        })
+        .from(schema.projects)
+        .where(eq(schema.projects.id, params.id))
+        .limit(1);
+
+      if (!project) {
+        set.status = 404;
+
+        return { error: "not found" };
+      }
+
+      if (project.ownerId !== currentUserId) {
+        set.status = 403;
+
+        return { error: "forbidden" };
+      }
+
+      if (body.name === undefined && body.description === undefined) {
+        set.status = 400;
+
+        return {
+          error: "validation failed",
+          fields: {
+            body: "at least one field is required",
+          },
+        };
+      }
+
+      const updates: {
+        name?: string;
+        description?: string;
+      } = {};
+
+      if (body.name !== undefined) {
+        updates.name = body.name;
+      }
+
+      if (body.description !== undefined) {
+        updates.description = body.description;
+      }
+
+      const [updatedProject] = await db
+        .update(schema.projects)
+        .set(updates)
+        .where(eq(schema.projects.id, params.id))
+        .returning({
+          id: schema.projects.id,
+          name: schema.projects.name,
+          description: schema.projects.description,
+          ownerId: schema.projects.ownerId,
+          createdAt: schema.projects.createdAt,
+          updatedAt: schema.projects.updatedAt,
+        });
+
+      if (!updatedProject) {
+        set.status = 500;
+
+        return { error: "project not updated" };
+      }
+
+      return {
+        id: updatedProject.id,
+        name: updatedProject.name,
+        description: updatedProject.description,
+        owner_id: updatedProject.ownerId,
+        created_at: updatedProject.createdAt,
+        updated_at: updatedProject.updatedAt,
+      };
+    },
+    {
+      params: t.Object({
+        id: t.String(),
+      }),
+      body: t.Object({
+        name: t.Optional(t.String()),
+        description: t.Optional(t.String()),
+      }),
+    },
+  )
   .post(
     "/",
     async ({ body, headers, jwt, set }) => {

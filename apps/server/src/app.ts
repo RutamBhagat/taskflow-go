@@ -11,7 +11,7 @@ export const app = new Elysia()
   .use(
     cors({
       origin: env.CORS_ORIGIN,
-      methods: ["GET", "POST", "OPTIONS"],
+      methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     }),
   )
   .onError(({ code, error, set }) => {
