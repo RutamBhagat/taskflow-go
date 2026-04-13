@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
 import { defineConfig } from "drizzle-kit";
 
-dotenv.config({
-  path: "../../apps/server/.env",
-});
+const rootEnvPath = Bun.resolveSync("../../.env", import.meta.dir);
+
+dotenv.config({ path: rootEnvPath });
 
 export default defineConfig({
   schema: "./src/schema",
