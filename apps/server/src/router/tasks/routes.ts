@@ -1,9 +1,8 @@
 import { db, eq, schema } from "@taskflow-elysia/db";
 import { Elysia, t } from "elysia";
-import { app } from "../../app";
 import { createJwtPlugin, getCurrentUserId } from "../auth/auth-utils";
 
-const taskRoutes = new Elysia({ prefix: "/tasks" })
+export const taskRoutes = new Elysia({ prefix: "/tasks" })
   .use(createJwtPlugin())
   .patch(
     "/:id",
@@ -208,5 +207,3 @@ const taskRoutes = new Elysia({ prefix: "/tasks" })
       }),
     },
   );
-
-app.use(taskRoutes);

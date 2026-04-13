@@ -1,6 +1,5 @@
 import { db, desc, eq, inArray, or, and, schema, sql } from "@taskflow-elysia/db";
 import { Elysia, t } from "elysia";
-import { app } from "../../app";
 import { createJwtPlugin, getCurrentUserId } from "../auth/auth-utils";
 import { getPagination, paginationQueryFields } from "../../shared/pagination";
 
@@ -8,7 +7,7 @@ const projectIdParams = t.Object({
   id: t.String({ format: "uuid" }),
 });
 
-const projectRoutes = new Elysia({ prefix: "/projects" })
+export const projectRoutes = new Elysia({ prefix: "/projects" })
   .use(createJwtPlugin())
   .get(
     "/",
@@ -633,5 +632,3 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
       }),
     },
   );
-
-app.use(projectRoutes);

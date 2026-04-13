@@ -1,8 +1,7 @@
 import { jwt } from "@elysiajs/jwt";
 import { db, eq, schema } from "@taskflow-elysia/db";
 import { env } from "@taskflow-elysia/env/server";
-import { Elysia, t } from "elysia";
-import { app } from "../../app";
+import { Elysia, t, type AnyElysia } from "elysia";
 import { jwtSchema } from "./auth-utils";
 
 function isUniqueViolation(error: unknown) {
@@ -21,7 +20,7 @@ function duplicateEmailError() {
   };
 }
 
-const authRoutes = new Elysia({ prefix: "/auth" })
+export const authRoutes: AnyElysia = new Elysia({ prefix: "/auth" })
   .use(
     jwt({
       name: "jwt",
@@ -146,6 +145,4 @@ const authRoutes = new Elysia({ prefix: "/auth" })
         password: t.String(),
       }),
     },
-  );
-
-app.use(authRoutes);
+);

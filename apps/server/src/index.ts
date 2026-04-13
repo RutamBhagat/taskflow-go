@@ -1,9 +1,8 @@
-import "./router/auth/routes";
-import "./router/projects/routes";
-import "./router/tasks/routes";
-
 import { app } from "./app";
+import { routes } from "./router";
 import { logger } from "./shared/logger";
+
+app.use(routes);
 
 app.listen(4000, () => {
   logger.info(

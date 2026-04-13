@@ -1,67 +1,84 @@
 # taskflow-elysia
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines Elysia, and more.
+## Overview
 
-## Features
+TaskFlow is a backend-first task management API built with Elysia, Bun, and Drizzle on PostgreSQL.
+It implements authentication, project access control, task CRUD, and a small seed dataset for review.
 
-- **TypeScript** - For type safety and improved developer experience
-- **Elysia** - Type-safe, high-performance framework
-- **Bun** - Runtime environment
-- **Drizzle** - TypeScript-first ORM
-- **PostgreSQL** - Database engine
-- **Oxlint** - Oxlint + Oxfmt (linting & formatting)
+## Architecture Decisions
 
-## Getting Started
+The backend is split by feature, not by abstract layer.
+`auth`, `projects`, and `tasks` each expose an Elysia plugin under `apps/server/src/router/`, while the app shell in `apps/server/src/app.ts` stays responsible for cross-cutting concerns like CORS, validation mapping, and request logging.
 
-First, install the dependencies:
+That is the smallest structure that still stays readable:
 
-```bash
-bun install
-```
+- auth owns JWT setup and login/register behavior
+- projects owns project visibility and project-scoped task listing
+- tasks owns task mutation and deletion authorization
+- shared helpers stay in `apps/server/src/shared/` when the logic is genuinely reused
 
-## Database Setup
+I intentionally did not add service/repository abstractions because the current surface area does not justify them yet.
+That would add indirection without improving the code.
 
-This project uses PostgreSQL with Drizzle ORM.
+## Tech Stack
 
-1. Make sure you have a PostgreSQL database set up.
-2. Update your `apps/server/.env` file with your PostgreSQL connection details.
+- Bun
+- Elysia
+- Drizzle ORM
+- PostgreSQL
+- Pino for structured logs
 
-3. Apply the schema to your database:
+## Running Locally
 
-```bash
-bun run db:push
-```
-
-Then, run the development server:
+The project is meant to be started through Docker.
 
 ```bash
-bun run dev
+git clone <your-repo-url>
+cd taskflow-elysia
+cp .env.example .env
+docker compose up --build
 ```
 
-The API is running at [http://localhost:3000](http://localhost:3000).
+The API starts on `http://localhost:4000`.
 
-## Git Hooks and Formatting
+Seed data includes:
 
-- Format and lint fix: `bun run check`
+- 1 user: `seed@example.com`
+- password: `Password123!`
+- 1 project
+- 3 tasks with `todo`, `in_progress`, and `done`
+
+## Docker
+
+- `docker-compose.yml` at the repo root starts PostgreSQL and the API
+- the API image uses a multi-stage Bun build in `apps/server/Dockerfile`
+- the API container reads variables from the root `.env` file via `env_file`
+- migrations and seeding run automatically before the server starts
+- PostgreSQL credentials stay configurable through `.env`
+
+## Migrations
+
+- Migrations are managed with `drizzle-migrations`
+- `packages/db/src/migrations/*` contains paired `up` and `down` functions for every migration file
+- container startup runs `bun run --filter @taskflow-elysia/db db:migrate:up`
+- seed data runs immediately after migrations with `bun run --filter @taskflow-elysia/db db:seed`
 
 ## Project Structure
 
-```
-taskflow-elysia/
-├── apps/
-│   └── server/      # Backend API (Elysia)
-├── packages/
-│   └── db/          # Database schema & queries
+```text
+apps/server/src/app.ts          # shared app shell and global middleware
+apps/server/src/router/         # feature routers: auth, projects, tasks
+apps/server/src/shared/         # shared HTTP helpers and logging
+packages/db/src/schema/         # Drizzle schema definitions
+packages/db/src/migrations/     # migration history
+packages/db/src/seed.ts         # bootstrap seed data
 ```
 
-## Available Scripts
+## Scripts
 
-- `bun run dev`: Start all applications in development mode
-- `bun run build`: Build all applications
-- `bun run dev:server`: Start only the server
-- `bun run check-types`: Check TypeScript types across all apps
-- `bun run db:push`: Push schema changes to database
-- `bun run db:generate`: Generate database client/types
-- `bun run db:migrate`: Run database migrations
-- `bun run db:studio`: Open database studio UI
-- `bun run check`: Run Oxlint and Oxfmt
+- `bun run dev`: start all workspace packages in development
+- `bun run dev:server`: start only the API server
+- `bun run db:migrate:up`: apply pending migrations
+- `bun run db:migrate:down`: roll back the last migration
+- `bun run db:seed`: seed the database with review data
+- `bun run check`: format and lint the repo

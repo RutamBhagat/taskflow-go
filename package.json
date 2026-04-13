@@ -27,6 +27,7 @@
     "db:migrate:status": "bun run --filter @taskflow-elysia/db db:migrate:status",
     "db:migrate:fresh": "bun run --filter @taskflow-elysia/db db:migrate:fresh",
     "db:migrate:refresh": "bun run --filter @taskflow-elysia/db db:migrate:refresh",
+    "db:seed": "bun run --filter @taskflow-elysia/db db:seed",
     "db:start": "docker compose up -d",
     "db:watch": "docker compose up",
     "db:stop": "docker compose stop",
