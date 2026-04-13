@@ -72,7 +72,9 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
       const [assignedTask] = await db
         .select({ id: schema.tasks.id })
         .from(schema.tasks)
-        .where(and(eq(schema.tasks.projectId, params.id), eq(schema.tasks.assigneeId, currentUserId)))
+        .where(
+          and(eq(schema.tasks.projectId, params.id), eq(schema.tasks.assigneeId, currentUserId)),
+        )
         .limit(1);
 
       if (project.ownerId !== currentUserId && !assignedTask) {
@@ -116,6 +118,96 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
     {
       params: t.Object({
         id: t.String(),
+      }),
+    },
+  )
+  .get(
+    "/:id/tasks",
+    async ({ headers, jwt, params, query, set }) => {
+      const currentUserId = await getCurrentUserId(jwt, headers.authorization);
+
+      if (!currentUserId) {
+        set.status = 401;
+
+        return { error: "unauthorized" };
+      }
+
+      const [project] = await db
+        .select({
+          id: schema.projects.id,
+          ownerId: schema.projects.ownerId,
+        })
+        .from(schema.projects)
+        .where(eq(schema.projects.id, params.id))
+        .limit(1);
+
+      if (!project) {
+        set.status = 404;
+
+        return { error: "not found" };
+      }
+
+      const [assignedTask] = await db
+        .select({ id: schema.tasks.id })
+        .from(schema.tasks)
+        .where(
+          and(eq(schema.tasks.projectId, params.id), eq(schema.tasks.assigneeId, currentUserId)),
+        )
+        .limit(1);
+
+      if (project.ownerId !== currentUserId && !assignedTask) {
+        set.status = 403;
+
+        return { error: "forbidden" };
+      }
+
+      const filters = [eq(schema.tasks.projectId, params.id)];
+
+      if (query.status !== undefined) {
+        filters.push(eq(schema.tasks.status, query.status));
+      }
+
+      if (query.assignee !== undefined) {
+        filters.push(eq(schema.tasks.assigneeId, query.assignee));
+      }
+
+      const tasks = await db
+        .select({
+          id: schema.tasks.id,
+          title: schema.tasks.title,
+          status: schema.tasks.status,
+          priority: schema.tasks.priority,
+          assigneeId: schema.tasks.assigneeId,
+          dueDate: schema.tasks.dueDate,
+          createdAt: schema.tasks.createdAt,
+          updatedAt: schema.tasks.updatedAt,
+        })
+        .from(schema.tasks)
+        .where(and(...filters))
+        .orderBy(desc(schema.tasks.createdAt));
+
+      return {
+        tasks: tasks.map((task) => ({
+          id: task.id,
+          title: task.title,
+          status: task.status,
+          priority: task.priority,
+          assignee_id: task.assigneeId,
+          due_date: task.dueDate,
+          created_at: task.createdAt,
+          updated_at: task.updatedAt,
+        })),
+      };
+    },
+    {
+      params: t.Object({
+        id: t.String(),
+      }),
+      query: t.Object({
+        status: t.Optional(
+          t.Union([t.Literal("todo"), t.Literal("in_progress"), t.Literal("done")]),
+        ),
+        assignee: t.Optional(t.String({ minLength: 1 })),
       }),
     },
   )
