@@ -213,6 +213,61 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
       }),
     },
   )
+  .delete(
+    "/:id",
+    async ({ headers, jwt, params, set }) => {
+      const currentUserId = await getCurrentUserId(jwt, headers.authorization);
+
+      if (!currentUserId) {
+        set.status = 401;
+
+        return { error: "unauthorized" };
+      }
+
+      const [project] = await db
+        .select({
+          id: schema.projects.id,
+          ownerId: schema.projects.ownerId,
+        })
+        .from(schema.projects)
+        .where(eq(schema.projects.id, params.id))
+        .limit(1);
+
+      if (!project) {
+        set.status = 404;
+
+        return { error: "not found" };
+      }
+
+      if (project.ownerId !== currentUserId) {
+        set.status = 403;
+
+        return { error: "forbidden" };
+      }
+
+      const [deletedProject] = await db
+        .delete(schema.projects)
+        .where(eq(schema.projects.id, params.id))
+        .returning({
+          id: schema.projects.id,
+        });
+
+      if (!deletedProject) {
+        set.status = 500;
+
+        return { error: "project not deleted" };
+      }
+
+      set.status = 204;
+
+      return;
+    },
+    {
+      params: t.Object({
+        id: t.String(),
+      }),
+    },
+  )
   .post(
     "/",
     async ({ body, headers, jwt, set }) => {
