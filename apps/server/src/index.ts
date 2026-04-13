@@ -15,3 +15,40 @@ app.listen(4000, () => {
     "server started",
   );
 });
+
+async function shutdown(signal: string) {
+  logger.info(
+    {
+      event: "server_shutdown_started",
+      signal,
+    },
+    "server shutting down",
+  );
+
+  try {
+    await app.server?.stop();
+
+    logger.info(
+      {
+        event: "server_shutdown_completed",
+        signal,
+      },
+      "server stopped",
+    );
+  } catch (error) {
+    logger.error(
+      {
+        event: "server_shutdown_failed",
+        signal,
+        error,
+      },
+      "server shutdown failed",
+    );
+
+    process.exitCode = 1;
+  }
+}
+
+process.once("SIGTERM", () => {
+  void shutdown("SIGTERM");
+});
