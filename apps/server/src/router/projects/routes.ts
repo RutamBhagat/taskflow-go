@@ -2,45 +2,65 @@ import { db, desc, eq, inArray, or, and, schema } from "@taskflow-elysia/db";
 import { Elysia, t } from "elysia";
 import { app } from "../../app";
 import { createJwtPlugin, getCurrentUserId } from "../auth/auth-utils";
+import { getPagination, paginationQueryFields } from "../../shared/pagination";
 
 const projectRoutes = new Elysia({ prefix: "/projects" })
   .use(createJwtPlugin())
-  .get("/", async ({ headers, jwt, set }) => {
-    const currentUserId = await getCurrentUserId(jwt, headers.authorization);
+  .get(
+    "/",
+    async ({ headers, jwt, query, set }) => {
+      const currentUserId = await getCurrentUserId(jwt, headers.authorization);
 
-    if (!currentUserId) {
-      set.status = 401;
+      if (!currentUserId) {
+        set.status = 401;
 
-      return { error: "unauthorized" };
-    }
+        return { error: "unauthorized" };
+      }
 
-    const assignedProjectIds = db
-      .select({
-        projectId: schema.tasks.projectId,
-      })
-      .from(schema.tasks)
-      .where(eq(schema.tasks.assigneeId, currentUserId));
+      const { page, limit, offset } = getPagination(query);
 
-    const projects = await db
-      .select({
-        id: schema.projects.id,
-        name: schema.projects.name,
-        description: schema.projects.description,
-        ownerId: schema.projects.ownerId,
-        createdAt: schema.projects.createdAt,
-        updatedAt: schema.projects.updatedAt,
-      })
-      .from(schema.projects)
-      .where(
-        or(
-          eq(schema.projects.ownerId, currentUserId),
-          inArray(schema.projects.id, assignedProjectIds),
-        ),
-      )
-      .orderBy(desc(schema.projects.createdAt));
+      const assignedProjectIds = db
+        .select({
+          projectId: schema.tasks.projectId,
+        })
+        .from(schema.tasks)
+        .where(eq(schema.tasks.assigneeId, currentUserId));
 
-    return { projects };
-  })
+      const projects = await db
+        .select({
+          id: schema.projects.id,
+          name: schema.projects.name,
+          description: schema.projects.description,
+          ownerId: schema.projects.ownerId,
+          createdAt: schema.projects.createdAt,
+          updatedAt: schema.projects.updatedAt,
+        })
+        .from(schema.projects)
+        .where(
+          or(
+            eq(schema.projects.ownerId, currentUserId),
+            inArray(schema.projects.id, assignedProjectIds),
+          ),
+        )
+        .orderBy(desc(schema.projects.createdAt), desc(schema.projects.id))
+        .limit(limit + 1)
+        .offset(offset);
+
+      const hasMore = projects.length > limit;
+
+      return {
+        page,
+        limit,
+        has_more: hasMore,
+        projects: hasMore ? projects.slice(0, limit) : projects,
+      };
+    },
+    {
+      query: t.Object({
+        ...paginationQueryFields,
+      }),
+    },
+  )
   .get(
     "/:id",
     async ({ headers, jwt, params, set }) => {
@@ -161,6 +181,8 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
         return { error: "forbidden" };
       }
 
+      const { page, limit, offset } = getPagination(query);
+
       const filters = [eq(schema.tasks.projectId, params.id)];
 
       if (query.status !== undefined) {
@@ -184,10 +206,17 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
         })
         .from(schema.tasks)
         .where(and(...filters))
-        .orderBy(desc(schema.tasks.createdAt));
+        .orderBy(desc(schema.tasks.createdAt), desc(schema.tasks.id))
+        .limit(limit + 1)
+        .offset(offset);
+
+      const hasMore = tasks.length > limit;
 
       return {
-        tasks: tasks.map((task) => ({
+        page,
+        limit,
+        has_more: hasMore,
+        tasks: (hasMore ? tasks.slice(0, limit) : tasks).map((task) => ({
           id: task.id,
           title: task.title,
           status: task.status,
@@ -204,6 +233,7 @@ const projectRoutes = new Elysia({ prefix: "/projects" })
         id: t.String(),
       }),
       query: t.Object({
+        ...paginationQueryFields,
         status: t.Optional(
           t.Union([t.Literal("todo"), t.Literal("in_progress"), t.Literal("done")]),
         ),
