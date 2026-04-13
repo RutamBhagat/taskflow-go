@@ -1,18 +1,12 @@
 import { cors } from "@elysiajs/cors";
 import { db } from "@taskflow-elysia/db";
 import { env } from "@taskflow-elysia/env/server";
-import { openapi } from '@elysiajs/openapi'
+import { openapi } from "@elysiajs/openapi";
 import { Elysia } from "elysia";
-import {
-  getValidationFields,
-  isForbidden,
-  isNotFound,
-  isUnauthorized,
-  logger,
-} from "./lib";
+import { getValidationFields, isForbidden, isNotFound, isUnauthorized, logger } from "./lib";
 
 export const app = new Elysia()
-  .use(openapi()) 
+  .use(openapi())
   .use(
     cors({
       origin: env.CORS_ORIGIN,
@@ -52,12 +46,15 @@ export const app = new Elysia()
     return { error: "internal server error" };
   })
   .onAfterResponse(({ request, set }) => {
-    logger.info({
-      event: "request_completed",
-      method: request.method,
-      path: new URL(request.url).pathname,
-      status: set.status ?? 200,
-    }, "request completed");
+    logger.info(
+      {
+        event: "request_completed",
+        method: request.method,
+        path: new URL(request.url).pathname,
+        status: set.status ?? 200,
+      },
+      "request completed",
+    );
   })
   .get("/", () => ({ ok: true }))
   .get("/health/db", async ({ set }) => {

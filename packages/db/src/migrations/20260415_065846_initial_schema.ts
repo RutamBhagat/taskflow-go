@@ -1,9 +1,7 @@
 import { sql } from "drizzle-orm";
 import type { MigrationArgs } from "@drepkovsky/drizzle-migrations";
 
-export async function up({
-  db,
-}: MigrationArgs<"postgresql">): Promise<void> {
+export async function up({ db }: MigrationArgs<"postgresql">): Promise<void> {
   await db.execute(sql`
     CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
@@ -20,9 +18,7 @@ export async function up({
   `);
 }
 
-export async function down({
-  db,
-}: MigrationArgs<"postgresql">): Promise<void> {
+export async function down({ db }: MigrationArgs<"postgresql">): Promise<void> {
   await db.execute(sql`
     DROP INDEX IF EXISTS "users_email_idx";
     DROP TABLE IF EXISTS "users";

@@ -68,13 +68,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/health/db",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "health",
-                "db"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["health", "db"]
             },
             "description": "Checks whether the API is responding."
           },
@@ -86,13 +81,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/health/db",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "health",
-                    "db"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["health", "db"]
                 }
               },
               "status": "OK",
@@ -162,13 +152,8 @@
             },
             "url": {
               "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
             },
             "description": "Creates a user account and returns a JWT plus the created user record."
           },
@@ -189,13 +174,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/auth/register",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "register"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "register"]
                 }
               },
               "status": "Created",
@@ -225,13 +205,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/auth/register",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "register"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "register"]
                 }
               },
               "status": "Bad Request",
@@ -285,13 +260,8 @@
             },
             "url": {
               "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
             },
             "description": "Authenticates an existing user and returns a JWT."
           },
@@ -312,13 +282,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/auth/login",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "login"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "login"]
                 }
               },
               "status": "OK",
@@ -348,13 +313,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/auth/login",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "login"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "login"]
                 }
               },
               "status": "Unauthorized",
@@ -384,13 +344,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/auth/login",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "login"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "login"]
                 }
               },
               "status": "Bad Request",
@@ -451,12 +406,8 @@
             },
             "url": {
               "raw": "{{baseUrl}}/projects",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["projects"]
             },
             "description": "Creates a project owned by the authenticated user."
           },
@@ -477,12 +428,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects"]
                 }
               },
               "status": "Created",
@@ -512,12 +459,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects"]
                 }
               },
               "status": "Bad Request",
@@ -547,12 +490,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects"]
                 }
               },
               "status": "Unauthorized",
@@ -594,13 +533,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/projects/{{projectId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects",
-                "{{projectId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}"]
             },
             "description": "Gets a project the authenticated user can access, including its tasks."
           },
@@ -612,13 +546,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "OK",
@@ -639,13 +568,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/not-a-uuid",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "not-a-uuid"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "not-a-uuid"]
                 }
               },
               "status": "Bad Request",
@@ -666,13 +590,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "Unauthorized",
@@ -693,13 +612,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "Forbidden",
@@ -720,13 +634,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/11111111-1111-1111-1111-111111111111",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "11111111-1111-1111-1111-111111111111"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "11111111-1111-1111-1111-111111111111"]
                 }
               },
               "status": "Not Found",
@@ -769,14 +678,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/projects/{{projectId}}/stats",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects",
-                "{{projectId}}",
-                "stats"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}", "stats"]
             },
             "description": "Returns task counts for a project grouped by status and by assignee."
           },
@@ -788,14 +691,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/stats",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "stats"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "stats"]
                 }
               },
               "status": "OK",
@@ -816,14 +713,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/not-a-uuid/stats",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "not-a-uuid",
-                    "stats"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "not-a-uuid", "stats"]
                 }
               },
               "status": "Bad Request",
@@ -844,14 +735,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/stats",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "stats"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "stats"]
                 }
               },
               "status": "Unauthorized",
@@ -872,14 +757,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/stats",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "stats"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "stats"]
                 }
               },
               "status": "Forbidden",
@@ -900,14 +779,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/11111111-1111-1111-1111-111111111111/stats",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "11111111-1111-1111-1111-111111111111",
-                    "stats"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "11111111-1111-1111-1111-111111111111", "stats"]
                 }
               },
               "status": "Not Found",
@@ -948,14 +821,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/projects/{{projectId}}/tasks?status=todo&assignee=11111111-1111-1111-1111-111111111111&page=1&limit=20",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects",
-                "{{projectId}}",
-                "tasks"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}", "tasks"],
               "query": [
                 {
                   "key": "status",
@@ -985,14 +852,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks?status=todo&assignee=11111111-1111-1111-1111-111111111111&page=1&limit=20",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ],
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"],
                   "query": [
                     {
                       "key": "status",
@@ -1031,14 +892,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks?status=blocked&assignee=not-a-uuid",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ],
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"],
                   "query": [
                     {
                       "key": "status",
@@ -1069,14 +924,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"]
                 }
               },
               "status": "Unauthorized",
@@ -1097,14 +946,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"]
                 }
               },
               "status": "Forbidden",
@@ -1125,14 +968,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/11111111-1111-1111-1111-111111111111/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "11111111-1111-1111-1111-111111111111",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "11111111-1111-1111-1111-111111111111", "tasks"]
                 }
               },
               "status": "Not Found",
@@ -1190,14 +1027,8 @@
             },
             "url": {
               "raw": "{{baseUrl}}/projects/{{projectId}}/tasks",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects",
-                "{{projectId}}",
-                "tasks"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}", "tasks"]
             },
             "description": "Creates a task in a project owned by the authenticated user."
           },
@@ -1218,14 +1049,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"]
                 }
               },
               "status": "Created",
@@ -1255,14 +1080,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"]
                 }
               },
               "status": "Bad Request",
@@ -1292,14 +1111,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"]
                 }
               },
               "status": "Unauthorized",
@@ -1329,14 +1142,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}", "tasks"]
                 }
               },
               "status": "Forbidden",
@@ -1366,14 +1173,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/11111111-1111-1111-1111-111111111111/tasks",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "11111111-1111-1111-1111-111111111111",
-                    "tasks"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "11111111-1111-1111-1111-111111111111", "tasks"]
                 }
               },
               "status": "Not Found",
@@ -1431,13 +1232,8 @@
             },
             "url": {
               "raw": "{{baseUrl}}/tasks/{{taskId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "tasks",
-                "{{taskId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}"]
             },
             "description": "Updates a task in a project owned by the authenticated user."
           },
@@ -1458,13 +1254,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/tasks/{{taskId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "{{taskId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
                 }
               },
               "status": "OK",
@@ -1494,13 +1285,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/tasks/{{taskId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "{{taskId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
                 }
               },
               "status": "Bad Request",
@@ -1530,13 +1316,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/tasks/{{taskId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "{{taskId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
                 }
               },
               "status": "Unauthorized",
@@ -1566,13 +1347,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/tasks/{{taskId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "{{taskId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
                 }
               },
               "status": "Forbidden",
@@ -1602,13 +1378,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/tasks/11111111-1111-1111-1111-111111111111",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "11111111-1111-1111-1111-111111111111"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "11111111-1111-1111-1111-111111111111"]
                 }
               },
               "status": "Not Found",
@@ -1647,13 +1418,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/tasks/{{taskId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "tasks",
-                "{{taskId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}"]
             },
             "description": "Deletes a task when the authenticated user is the project owner or task creator."
           },
@@ -1665,13 +1431,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/tasks/{{taskId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "{{taskId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
                 }
               },
               "status": "No Content",
@@ -1687,13 +1448,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/tasks/{{taskId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "{{taskId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
                 }
               },
               "status": "Unauthorized",
@@ -1714,13 +1470,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/tasks/{{taskId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "{{taskId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
                 }
               },
               "status": "Forbidden",
@@ -1741,13 +1492,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/tasks/11111111-1111-1111-1111-111111111111",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "tasks",
-                    "11111111-1111-1111-1111-111111111111"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "11111111-1111-1111-1111-111111111111"]
                 }
               },
               "status": "Not Found",
@@ -1803,13 +1549,8 @@
             },
             "url": {
               "raw": "{{baseUrl}}/projects/{{projectId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects",
-                "{{projectId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}"]
             },
             "description": "Updates a project the authenticated user owns."
           },
@@ -1830,13 +1571,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "OK",
@@ -1866,13 +1602,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "Bad Request",
@@ -1902,13 +1633,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "Unauthorized",
@@ -1938,13 +1664,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "Forbidden",
@@ -1974,13 +1695,8 @@
                 },
                 "url": {
                   "raw": "{{baseUrl}}/projects/11111111-1111-1111-1111-111111111111",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "11111111-1111-1111-1111-111111111111"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "11111111-1111-1111-1111-111111111111"]
                 }
               },
               "status": "Not Found",
@@ -2021,12 +1737,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/projects?page=1&limit=20",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["projects"],
               "query": [
                 {
                   "key": "page",
@@ -2048,12 +1760,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects?page=1&limit=20",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects"
-                  ],
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects"],
                   "query": [
                     {
                       "key": "page",
@@ -2084,12 +1792,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects"]
                 }
               },
               "status": "Unauthorized",
@@ -2129,13 +1833,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/projects/{{projectId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "projects",
-                "{{projectId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}"]
             },
             "description": "Deletes a project the authenticated user owns. Related tasks are removed by the database cascade."
           },
@@ -2147,13 +1846,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "No Content",
@@ -2169,13 +1863,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/not-a-uuid",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "not-a-uuid"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "not-a-uuid"]
                 }
               },
               "status": "Bad Request",
@@ -2196,13 +1885,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "Unauthorized",
@@ -2223,13 +1907,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/{{projectId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "{{projectId}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "{{projectId}}"]
                 }
               },
               "status": "Forbidden",
@@ -2250,13 +1929,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/projects/11111111-1111-1111-1111-111111111111",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "projects",
-                    "11111111-1111-1111-1111-111111111111"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["projects", "11111111-1111-1111-1111-111111111111"]
                 }
               },
               "status": "Not Found",

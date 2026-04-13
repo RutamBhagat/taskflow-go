@@ -19,9 +19,7 @@ export const users = pgTable(
     name: text("name").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
-    createdAt: timestamp("created_at", { mode: "date", precision: 3 })
-      .defaultNow()
-      .notNull(),
+    createdAt: timestamp("created_at", { mode: "date", precision: 3 }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { mode: "date", precision: 3 })
       .defaultNow()
       .notNull()
@@ -39,9 +37,7 @@ export const projects = pgTable(
     ownerId: uuid("owner_id")
       .notNull()
       .references(() => users.id),
-    createdAt: timestamp("created_at", { mode: "date", precision: 3 })
-      .defaultNow()
-      .notNull(),
+    createdAt: timestamp("created_at", { mode: "date", precision: 3 }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { mode: "date", precision: 3 })
       .defaultNow()
       .notNull()
@@ -66,9 +62,7 @@ export const tasks = pgTable(
       .references(() => users.id),
     assigneeId: uuid("assignee_id").references(() => users.id),
     dueDate: date("due_date", { mode: "date" }),
-    createdAt: timestamp("created_at", { mode: "date", precision: 3 })
-      .defaultNow()
-      .notNull(),
+    createdAt: timestamp("created_at", { mode: "date", precision: 3 }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { mode: "date", precision: 3 })
       .defaultNow()
       .notNull()
